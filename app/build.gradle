@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
 }
 
@@ -36,5 +40,9 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     //swipe to refresh
-    implementation 'com.android.support:support-v4:25.4.0'
+    //implementation 'com.android.support:support-v4:25.4.0'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.8.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.0'
 }
