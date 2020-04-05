@@ -27,21 +27,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        showList();
+
         ApiCall();
         }
 
-    private void showList() {
+    private void showList(List<Country> CountryList) {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        final List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }// define an adapter
-        RecyclerView.Adapter mAdapter = new ListAdapter(input);
+
+
+        RecyclerView.Adapter mAdapter = new ListAdapter(CountryList);
         recyclerView.setAdapter(mAdapter);
 
         //Swipe to dismiss
@@ -82,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RestCountryResponse> call, Response<RestCountryResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<Country> CountryList = response.body().getCountries();
-                    Toast.makeText(getApplicationContext(), "API Success", Toast.LENGTH_SHORT).show();
+                    showList(CountryList);
                 }else {
                     showError();
                 }
