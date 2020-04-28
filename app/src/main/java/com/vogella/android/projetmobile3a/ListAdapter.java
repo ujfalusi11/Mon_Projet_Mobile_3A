@@ -1,18 +1,25 @@
 package com.vogella.android.projetmobile3a;
 
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import androidx.navigation.fragment.NavHostFragment;
+
+
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<Country> values;
+
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -40,6 +47,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         values.remove(position);
         notifyItemRemoved(position);
     }
+
+
+
 
     // Provide a suitable constructor (depends on the kind of dataset)
     ListAdapter(List<Country> myDataset) {
@@ -69,9 +79,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.txtHeader.setText(currentCountry.getCountry());
         holder.txtHeader.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                remove(position);
-            }
+            public void onClick(View v) {}
         });
 
         holder.txtFooter.setText("Total : " + currentCountry.getTotalConfirmed());
@@ -83,4 +91,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         return values.size();
     }
 
+   /* public void showInfo(Country currentCountry) {
+        Intent intent = new Intent(ListAdapter.this, CountryInfo.class);
+        Bundle b = new Bundle();
+        b.putInt("key", 1); //Your id
+        intent.putExtras(b); //Put your id to your next Intent
+        startActivity(intent);
+        finish();
+    }*/
+
 }
+
+
