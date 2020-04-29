@@ -20,6 +20,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         List<Country> countryList = getDataFromCache();
         if (countryList != null){
+            sort(countryList,countryTCCComparator_des);
             showList(countryList);
         }else {
             ApiCall();
@@ -188,5 +190,31 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         }
         showList(newList);
         return true;
+    }
+
+    //Total confirmed cases descending comparator
+    public static Comparator<Country> countryTCCComparator_des = new Comparator<Country>(){
+        public int compare (Country country1 , Country country2 ){
+            double countryID1 = country1.getTotalConfirmed();
+            double countryID2 = country2.getTotalConfirmed();
+
+            //ascending order
+            return Double.compare(countryID2,countryID1);
+        }
+    };
+
+    //Sort
+    public static void sort(List<Country> A, Comparator<Country> c){
+        Country tmp;
+        int i,j;
+        for (i = 0 ; i <A.size();i++){
+            for (j = i+1 ; j <A.size();j++){
+                if(c.compare(A.get(i),A.get(j))>0){
+                    tmp=A.get(i);
+                    A.set(i,A.get(j));
+                    A.set(j,tmp);
+                }
+            }
+        }
     }
 }

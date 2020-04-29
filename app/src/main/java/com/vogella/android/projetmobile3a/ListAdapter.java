@@ -93,7 +93,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         return values.size();
     }
 
-   
+
 
 
    /* public void showInfo(Country currentCountry) {
