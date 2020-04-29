@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.navigation.fragment.NavHostFragment;
@@ -18,7 +19,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    private List<Country> values;
+    private static List<Country> values;
+//    private List<Country> values;
 
 
     // Provide a reference to the views for each data item
@@ -30,7 +32,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         TextView txtFooter;
         View layout;
 
-        public ViewHolder(View v) {
+        ViewHolder(View v) {
             super(v);
             layout = v;
             txtHeader = (TextView) v.findViewById(R.id.firstLine);
@@ -90,6 +92,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public int getItemCount() {
         return values.size();
     }
+
+   
+
 
    /* public void showInfo(Country currentCountry) {
         Intent intent = new Intent(ListAdapter.this, CountryInfo.class);

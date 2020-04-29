@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -26,10 +28,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     private SharedPreferences sharedPreferences;
     private Gson gson;
+   // List<Country> countryList = new List<Country>;
+    //adapter = new  RecyclerView.Adapter(countryList);
+   // ListAdapter adapter = new ListAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         }else {
             ApiCall();
         }
+
+
 
         }
 
@@ -137,5 +145,48 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
 
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+
+        searchView.setOnQueryTextListener(this);
+
+        // Associate searchable configuration with the SearchView
+       /* SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));*/
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        String userInput = newText.toLowerCase();
+        List<Country> newList = new ArrayList<>();
+        List<Country> countryList = getDataFromCache();
+       /// Country currentCountry = countryList.get(position);
+        assert countryList != null;
+        for(Country name : countryList)
+        {
+            if (name.getCountry().toLowerCase().contains(userInput))
+            {
+                newList.add(name);
+            }
+        }
+        showList(newList);
+        return true;
+    }
 }
