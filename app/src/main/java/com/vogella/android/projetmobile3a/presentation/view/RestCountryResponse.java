@@ -8,7 +8,7 @@ public class RestCountryResponse {
     private List<Country> Countries;
     private String Date;
 
-    List<Country> getCountries() {
+    public List<Country> getCountries() {
         return Countries;
     }
 
