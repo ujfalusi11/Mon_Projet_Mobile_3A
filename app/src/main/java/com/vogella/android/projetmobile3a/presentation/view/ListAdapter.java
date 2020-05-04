@@ -15,13 +15,14 @@ import com.vogella.android.projetmobile3a.presentation.model.Country;
 
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    private static List<Country> values;
-//    private List<Country> values;
+    private final List<Country> values;
+    private final OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Country item);
+    }
 
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         TextView txtHeader;
@@ -50,9 +51,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    ListAdapter(List<Country> myDataset) {
-        values = myDataset;
+    ListAdapter(List<Country> myDataset, OnItemClickListener listener) {
+        this.values = myDataset;
+        this.listener = listener;
     }
+
+
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -81,6 +85,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         });
 
         holder.txtFooter.setText("Total : " + currentCountry.getTotalConfirmed());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                listener.onItemClick(currentCountry);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

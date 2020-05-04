@@ -4,34 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.AdapterView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.vogella.android.projetmobile3a.Constant;
 import com.vogella.android.projetmobile3a.presentation.Singletons;
 import com.vogella.android.projetmobile3a.presentation.controller.MainController;
 import com.vogella.android.projetmobile3a.presentation.model.Country;
-import com.vogella.android.projetmobile3a.data.CountryAPI;
 import com.vogella.android.projetmobile3a.R;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -64,13 +50,22 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerView.Adapter mAdapter = new ListAdapter(CountryList);
+        RecyclerView.Adapter mAdapter = new ListAdapter(CountryList, new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Country country) {
+                controller.onItemClick(country);
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 
 
     public void showError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_SHORT).show();
+    }
+
+    public void navigateToDetails(Country country) {
+        Toast.makeText(getApplicationContext(), "Navigate", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -109,4 +104,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         showList(newList);
         return true;
     }
+
+
 }

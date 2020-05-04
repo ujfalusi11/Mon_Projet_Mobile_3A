@@ -128,6 +128,7 @@ public class MainController{
 
 
     public void onItemClick(Country country){
+        view.navigateToDetails(country);
 
     }
     public void onButtonAClick(){
