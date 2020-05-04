@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.vogella.android.projetmobile3a.Constant;
+import com.vogella.android.projetmobile3a.presentation.Singletons;
 import com.vogella.android.projetmobile3a.presentation.controller.MainController;
 import com.vogella.android.projetmobile3a.presentation.model.Country;
 import com.vogella.android.projetmobile3a.data.CountryAPI;
@@ -46,10 +47,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         controller = new MainController(
                  this,
-         new GsonBuilder()
-                .setLenient()
-                .create(),
-         getSharedPreferences("application_covid19", Context.MODE_PRIVATE)
+                Singletons.getGson(),
+                Singletons.getSharedPreferences(getApplicationContext())
 
         );
         controller.onStart();

@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import com.vogella.android.projetmobile3a.Constant;
 import com.vogella.android.projetmobile3a.R;
 import com.vogella.android.projetmobile3a.data.CountryAPI;
+import com.vogella.android.projetmobile3a.presentation.Singletons;
 import com.vogella.android.projetmobile3a.presentation.model.Country;
 import com.vogella.android.projetmobile3a.presentation.view.MainActivity;
 import com.vogella.android.projetmobile3a.presentation.view.RestCountryResponse;
@@ -54,14 +55,8 @@ public class MainController{
 
     private void ApiCall(){
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constant.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
 
-        CountryAPI CountryAPI = retrofit.create(CountryAPI.class);
-
-        Call<RestCountryResponse> call = CountryAPI.getCountryResponse();
+        Call<RestCountryResponse> call = Singletons.getCountryApi().getCountryResponse();
         call.enqueue(new Callback<RestCountryResponse>() {
             @Override
             public void onResponse(Call<RestCountryResponse> call, Response<RestCountryResponse> response) {
@@ -105,7 +100,7 @@ public class MainController{
     }
 
     //Total confirmed cases descending comparator
-    public static Comparator<Country> countryTCCComparator_des = new Comparator<Country>(){
+    private static Comparator<Country> countryTCCComparator_des = new Comparator<Country>(){
         public int compare (Country country1 , Country country2 ){
             double countryID1 = country1.getTotalConfirmed();
             double countryID2 = country2.getTotalConfirmed();
@@ -116,7 +111,7 @@ public class MainController{
     };
 
     //Sort
-    public static void sort(List<Country> A, Comparator<Country> c){
+    private static void sort(List<Country> A, Comparator<Country> c){
         Country tmp;
         int i,j;
         for (i = 0 ; i <A.size();i++){
