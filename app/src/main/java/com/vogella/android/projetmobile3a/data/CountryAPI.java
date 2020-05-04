@@ -1,8 +1,9 @@
-package com.vogella.android.projetmobile3a;
+package com.vogella.android.projetmobile3a.data;
+
+import com.vogella.android.projetmobile3a.presentation.view.RestCountryResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public interface CountryAPI {
     @GET("/summary")

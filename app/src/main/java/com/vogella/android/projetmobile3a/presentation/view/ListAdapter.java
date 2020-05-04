@@ -1,21 +1,17 @@
-package com.vogella.android.projetmobile3a;
+package com.vogella.android.projetmobile3a.presentation.view;
 
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import androidx.navigation.fragment.NavHostFragment;
-
+import com.vogella.android.projetmobile3a.R;
+import com.vogella.android.projetmobile3a.presentation.model.Country;
 
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {

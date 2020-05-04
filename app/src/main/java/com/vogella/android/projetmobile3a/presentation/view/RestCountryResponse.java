@@ -1,4 +1,6 @@
-package com.vogella.android.projetmobile3a;
+package com.vogella.android.projetmobile3a.presentation.view;
+
+import com.vogella.android.projetmobile3a.presentation.model.Country;
 
 import java.util.List;
 

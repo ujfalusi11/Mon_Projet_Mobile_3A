@@ -1,4 +1,4 @@
-package com.vogella.android.projetmobile3a;
+package com.vogella.android.projetmobile3a.presentation.model;
 
 public class Country {
     private String Differences;

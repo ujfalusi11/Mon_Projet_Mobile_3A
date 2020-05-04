@@ -1,11 +1,9 @@
-package com.vogella.android.projetmobile3a;
+package com.vogella.android.projetmobile3a.presentation.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +15,10 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.vogella.android.projetmobile3a.Constant;
+import com.vogella.android.projetmobile3a.presentation.model.Country;
+import com.vogella.android.projetmobile3a.data.CountryAPI;
+import com.vogella.android.projetmobile3a.R;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
