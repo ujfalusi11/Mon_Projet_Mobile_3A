@@ -2,4 +2,16 @@
     <string name="app_name">Covid-19 </string>
     <string name="search_hint">search Country</string>
     <string name="search_title">search</string>
+    <string name="CountryKey">countryKey</string>
+    <string name="number">111</string>
+    <string name="Code">Cod</string>
+    <string name="countryName">Country</string>
+    <string name="Banner">Covid-19</string>
+    <string name="total_confirmed">Total confirmed :</string>
+    <string name="new_confirmed">New confirmed :</string>
+    <string name="total_deaths">Total deaths :</string>
+    <string name="new_deaths">New deaths :</string>
+    <string name="goBack">Return</string>
+    <string name="total_recovered">Total recovered :</string>
+    <string name="new_recovered">New recovered :</string>
 </resources>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -65,7 +66,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     public void navigateToDetails(Country country) {
-        Toast.makeText(getApplicationContext(), "Navigate", Toast.LENGTH_SHORT).show();
+        Intent myIntent = new Intent(MainActivity.this, CountryInfo.class);
+        myIntent.putExtra("CountryKey)", Singletons.getGson().toJson(country));
+       // myIntent.putExtra("countryKey", Singletons.getGson().toJson(country));
+        MainActivity.this.startActivity(myIntent);
     }
 
     @Override
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         assert countryList != null;
         for(Country name : countryList)
         {
-            if (name.getCountry().toLowerCase().contains(userInput))
+            if (name.getName().toLowerCase().contains(userInput))
             {
                 newList.add(name);
             }

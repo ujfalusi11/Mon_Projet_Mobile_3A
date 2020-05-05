@@ -17,7 +17,7 @@ public class Country {
         return Differences;
     }
 
-    public String getCountry() {
+    public String getName() {
         return Country;
     }
 

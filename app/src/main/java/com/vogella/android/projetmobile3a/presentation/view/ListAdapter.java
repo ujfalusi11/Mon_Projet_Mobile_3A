@@ -19,7 +19,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(Country item);
+        void onItemClick(Country country);
     }
 
 
@@ -78,7 +78,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final Country currentCountry = values.get(position);
-        holder.txtHeader.setText(currentCountry.getCountry());
+        holder.txtHeader.setText(currentCountry.getName());
         holder.txtHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {}
