@@ -1,33 +1,25 @@
 package com.vogella.android.projetmobile3a.presentation.controller;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.vogella.android.projetmobile3a.Constant;
-import com.vogella.android.projetmobile3a.R;
-import com.vogella.android.projetmobile3a.data.CountryAPI;
+import com.vogella.android.projetmobile3a.presentation.Constant;
 import com.vogella.android.projetmobile3a.presentation.Singletons;
 import com.vogella.android.projetmobile3a.presentation.model.Country;
 import com.vogella.android.projetmobile3a.presentation.view.MainActivity;
 import com.vogella.android.projetmobile3a.presentation.view.RestCountryResponse;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainController{
@@ -58,7 +50,7 @@ public class MainController{
         Call<RestCountryResponse> call = Singletons.getCountryApi().getCountryResponse();
         call.enqueue(new Callback<RestCountryResponse>() {
             @Override
-            public void onResponse(Call<RestCountryResponse> call, Response<RestCountryResponse> response) {
+            public void onResponse(@NonNull Call<RestCountryResponse> call, @NonNull Response<RestCountryResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     List<Country> CountryList = response.body().getCountries();
                     saveList(CountryList);
@@ -69,7 +61,7 @@ public class MainController{
             }
 
             @Override
-            public void onFailure(Call<RestCountryResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<RestCountryResponse> call, @NonNull Throwable t) {
                 view.showError();
             }
         });
@@ -99,13 +91,11 @@ public class MainController{
     }
 
     //Total confirmed cases descending comparator
-    public static Comparator<Country> countryTCCComparator_des = new Comparator<Country>(){
-        public int compare (Country country1 , Country country2 ){
-            double countryID1 = country1.getTotalConfirmed();
-            double countryID2 = country2.getTotalConfirmed();
-            //ascending order
-            return Double.compare(countryID2,countryID1);
-        }
+    public static Comparator<Country> countryTCCComparator_des = (country1, country2) -> {
+        double countryID1 = country1.getTotalConfirmed();
+        double countryID2 = country2.getTotalConfirmed();
+        //ascending order
+        return Double.compare(countryID2,countryID1);
     };
 
     //Sort

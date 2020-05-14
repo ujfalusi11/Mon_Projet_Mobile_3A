@@ -3,20 +3,16 @@ package com.vogella.android.projetmobile3a.presentation.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.widget.AdapterView;
 import android.widget.SearchView;
 import android.widget.Toast;
-
 import com.vogella.android.projetmobile3a.presentation.Singletons;
 import com.vogella.android.projetmobile3a.presentation.controller.MainController;
 import com.vogella.android.projetmobile3a.presentation.model.Country;
 import com.vogella.android.projetmobile3a.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +20,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
     private MainController controller;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +40,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void showList(List<Country> CountryList) {
         MainController.sort(CountryList, MainController.countryTCCComparator_des);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerView.Adapter mAdapter = new ListAdapter(CountryList, new ListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Country country) {
-                controller.onItemClick(country);
-            }
-        });
+        RecyclerView.Adapter mAdapter = new ListAdapter(CountryList, country -> controller.onItemClick(country));
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -70,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void navigateToDetails(Country country) {
         Intent myIntent = new Intent(MainActivity.this, CountryInfo.class);
         myIntent.putExtra("CountryKey)", Singletons.getGson().toJson(country));
-       // myIntent.putExtra("countryKey", Singletons.getGson().toJson(country));
         MainActivity.this.startActivity(myIntent);
     }
 

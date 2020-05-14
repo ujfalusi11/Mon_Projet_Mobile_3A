@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.vogella.android.projetmobile3a.Constant;
 import com.vogella.android.projetmobile3a.data.CountryAPI;
 
 import retrofit2.Retrofit;

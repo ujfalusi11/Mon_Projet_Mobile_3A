@@ -3,15 +3,11 @@ package com.vogella.android.projetmobile3a.presentation.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.vogella.android.projetmobile3a.R;
 import com.vogella.android.projetmobile3a.presentation.Singletons;
-import com.vogella.android.projetmobile3a.presentation.controller.MainController;
 import com.vogella.android.projetmobile3a.presentation.model.Country;
 
-import static java.lang.Integer.parseInt;
 
 public class CountryInfo extends AppCompatActivity {
 
@@ -24,9 +20,6 @@ public class CountryInfo extends AppCompatActivity {
     private TextView CountryTotalRecovered;
     private TextView CountryNewRecovered;
 
-
-    //String countString = CountryTotalConfirmed.getTota().toString();
-    //Integer count = Integer.parseInt(countString);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
