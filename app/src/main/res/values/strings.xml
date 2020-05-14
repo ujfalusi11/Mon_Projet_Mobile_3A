@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Covid-19 </string>
+    <string name="app_name">COVID-19 </string>
     <string name="search_hint">search Country</string>
     <string name="search_title">search</string>
     <string name="CountryKey">countryKey</string>

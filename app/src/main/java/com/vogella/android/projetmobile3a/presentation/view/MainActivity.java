@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
     public void showList(List<Country> CountryList) {
+        MainController.sort(CountryList, MainController.countryTCCComparator_des);
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
@@ -81,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 (SearchView) menu.findItem(R.id.search).getActionView();
 
         searchView.setOnQueryTextListener(this);
+
+        searchView.setQueryHint("Search by Country name");
 
         return true;
     }

@@ -46,7 +46,6 @@ public class MainController{
 
         List<Country> countryList = getDataFromCache();
         if (countryList != null){
-            sort(countryList,countryTCCComparator_des);
             view.showList(countryList);
         }else {
             ApiCall();
@@ -100,18 +99,17 @@ public class MainController{
     }
 
     //Total confirmed cases descending comparator
-    private static Comparator<Country> countryTCCComparator_des = new Comparator<Country>(){
+    public static Comparator<Country> countryTCCComparator_des = new Comparator<Country>(){
         public int compare (Country country1 , Country country2 ){
             double countryID1 = country1.getTotalConfirmed();
             double countryID2 = country2.getTotalConfirmed();
-
             //ascending order
             return Double.compare(countryID2,countryID1);
         }
     };
 
     //Sort
-    private static void sort(List<Country> A, Comparator<Country> c){
+    public static void sort(List<Country> A, Comparator<Country> c){
         Country tmp;
         int i,j;
         for (i = 0 ; i <A.size();i++){
@@ -129,7 +127,6 @@ public class MainController{
 
     public void onItemClick(Country country){
         view.navigateToDetails(country);
-
     }
     public void onButtonAClick(){
 
