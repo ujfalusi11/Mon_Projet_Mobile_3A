@@ -1,4 +1,4 @@
-# Projet_Mobile_3A 
+# Projet Mobile 3A - COVID-19
 ![image description](https://www.medeflyonrhone.fr/wp-content/uploads/2020/04/coronavirus-7.png)
 Ce projet est une application android qui affiche les différentes informations relatives au covid 19 par pays. Pour chaque pays on peut visualiser l'état d'avancement des cas en temps réel.
 
