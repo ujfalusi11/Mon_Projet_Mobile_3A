@@ -22,6 +22,7 @@ What things you need to install the software and how to install them
 * CI/CD
 * Affichage d'une liste dans un recyclerView
 * Autres Fonctionnalités : 
+  * list sorting
   * Stockage des données en cache
   * Barre de recherche
   * Affichage des pays par ordre de décroissance du nombre total de cas actifs 
